@@ -6,5 +6,13 @@
 
   <button mat-raised-button color="primary" (click)="generateSongURL()">Submit</button>
   
+<br/>
+<br/>
+  <mat-form-field class="example-full-width">
+    <mat-label>Enter mobile youtube URL</mat-label>
+    <input id="url" for="url" [formControl]="urlMobile" matInput placeholder="URL">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="generateSongURLMobile()">Submit</button>
   
 </form>

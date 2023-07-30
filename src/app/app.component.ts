@@ -10,6 +10,7 @@ import {DataService} from '../app/data.service'
 })
 export class AppComponent {
   url = new FormControl('');
+  urlMobile = new FormControl('');
   title = 'youtube-converter';
 
   constructor(private dataService : DataService)
@@ -40,6 +41,32 @@ export class AppComponent {
       })
     }
     
+  }
+
+  generateSongURLMobile()
+  {
+    const youtubeURL : string = this.urlMobile.value
+    if(!youtubeURL)
+    {
+      alert("No Url entered")
+    }
+    else
+    {
+      let youtubeId = youtubeURL.toString().split("\/")[3]
+      debugger;
+      this.dataService.getData(youtubeId).subscribe((data : any)=>{
+        if(data && data.link)
+        {
+          this.downloadMp3(data.link)
+        }
+        else
+        {
+          alert("There is some issue with URL")
+        }
+      },(error)=>{
+        alert("something went wrong, please check the error  : "+ error)
+      })
+    }
   }
 
   downloadMp3(linkURL : string): void {
